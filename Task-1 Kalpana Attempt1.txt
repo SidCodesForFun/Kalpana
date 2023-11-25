@@ -1,0 +1,53 @@
+Task-1 Kalpana Attempt1
+
+
+# Represents an Image
+class Image:
+    # The width and height are constants at the class level
+    WIDTH=640
+    HEIGHT=480
+
+    # Default constructor. Initializes a B&W Image with 0 as the dimensions value
+    def __init__(self) -> None:
+        self.isBW=True
+        self.defValue=0
+        self.Dimensions = self.GetDimensions()
+
+    # Two parameter constructor. Initializes an Image as either 0 or a finite defValue as the dimensions value  
+    def __init__(self, isBW, defValue) -> None:
+        self.isBW=isBW
+        if self.isBW:
+            self.defValue=0
+        else:
+            self.defValue=defValue
+        # Store the dimensions
+        self.dimensions = self.GetDimensions()
+
+    # Returns the dimensions of the image. The image is represented as a two dimensional list
+    def GetDimensions(self):
+        # Create a two dimensional list (array) with the default width and height
+        cols, rows = (Image.WIDTH, Image.HEIGHT)
+        dimensions = [[self.defValue]*cols]*rows
+        return dimensions
+
+    # Displays the image dimensions
+    def PrintDimensions(self):
+        print("Image dimensions:")
+        print(self.dimensions)
+
+    # Creates an identical copy of the image
+    def Copy(self):
+        imageCopy=Image(self.isBW, self.defValue)
+        return imageCopy
+   
+# Create a B&W image instance
+imageBW = Image(True, 0)
+imageBW.PrintDimensions()
+
+# Create a colour image with default value of 12
+imageColor = Image(False, 12)
+imageColor.PrintDimensions()
+
+# Make a copy of the above colour image
+imageCpy=imageBW.Copy()
+imageCpy.PrintDimensions()
